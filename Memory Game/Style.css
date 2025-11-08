@@ -1,0 +1,225 @@
+@import url('https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Prompt';
+}
+
+.container-button {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+z-index: 2;
+}
+.container-button video{
+position: relative;
+width: 100vw;
+height: 100vh;
+object-fit: cover;
+}
+
+.container-button span{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    padding: 12px 20px;
+    background: #000;
+    color: #F44336; 
+    font-family: 'Press Start 2P', monospace;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border: 3px solid #F44336;
+    box-shadow: 6px 6px 0 0 #000; 
+    cursor: pointer;
+    user-select: none;
+    -webkit-font-smoothing: none;
+    image-rendering: pixelated;
+}
+
+.container-button span:hover{
+    transform: translate(-50%,-50%) scale(1.05);
+    filter: drop-shadow(0 0 6px #f44336bb);
+}
+
+.card {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 300px;
+    height: 200px;
+    z-index: 3;
+    background: #F44336;
+    color: #000; 
+    font-family: 'Press Start 2P', monospace;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border: 3px solid #F44336;
+    box-shadow: 6px 6px 0 0 #000; 
+    cursor: pointer;
+    user-select: none;
+    -webkit-font-smoothing: none;
+    image-rendering: pixelated;
+}
+
+.card h3 {
+    margin: 10px;
+}
+.card input {
+width: 200px;
+margin-left: 20px;
+}
+
+.card button{
+    font-family: 'Press Start 2P', monospace;
+    padding: 5px;
+    background-color: #bbb;
+    border-radius: 5px;
+}
+
+
+
+
+.info-container{
+    width: 1080px;
+    height: 50px;
+    margin: 20px auto;
+    border: 3px solid lightblue;
+    border-radius: 10px 10px 5px 5px;
+    overflow: hidden;
+}
+
+.info-container .name {
+float: left;
+margin: 10px ;
+}
+
+.info-container .tries{
+    float: right;
+    margin: 10px;
+}
+
+.memory-game-block{
+    display: flex;
+    flex-wrap: wrap;
+    width: 1100px;
+    margin: 20px auto;
+}
+
+.memory-game-block .game-block{
+height: 200px;
+transition: transform .5s;
+transform-style: preserve-3d;
+cursor: pointer;
+position: relative;
+flex: 1 0 200px;
+margin: 0 10px 20px;
+transform-origin: center;
+}
+
+.memory-game-block .game-block .face::before{
+    content:'?';
+    font-size: 140px;
+    font-weight:bold;
+    color: white;
+}
+
+.memory-game-block .game-block .front{
+background-color: rgba(51, 45, 45, 0.767);
+line-height: 200px;
+}
+
+.memory-game-block .game-block .back{
+    transform: rotateY(180deg);
+}
+
+.memory-game-block .game-block .back img {
+    position: absolute;
+    left: 10%;
+    height: 140px;
+    width: 140px;
+    margin-top: 30px;
+}
+
+.memory-game-block .game-block .face{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    backface-visibility: hidden;
+    border: 5px solid lightblue;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.memory-game-block .game-block.is-flipped,
+.memory-game-block .game-block.has-match{
+    transform: rotateY(180deg);
+        pointer-events: none;
+}
+
+.memory-game-block.no-click{
+    pointer-events: none;
+}
+
+/* I created what's below this comment using AI because I'm so sleepy, I've been working on this project for 6 hours now , 
+lol.Yes, I'm still a beginner.
+
+/* Responsive breakpoints: improve layout on tablets / phones */
+/* Large desktops -> keep original sizes */
+@media (max-width: 1200px) {
+    .info-container{
+        width: calc(100% - 40px);
+        margin: 16px auto;
+    }
+    .memory-game-block{
+        width: calc(100% - 40px);
+        justify-content: center;
+        gap: 18px;
+    }
+    .memory-game-block .game-block{
+        flex: 1 0 180px;
+        height: 180px;
+    }
+    .memory-game-block .game-block .face::before{ font-size: 120px; }
+}
+
+/* Medium screens (tablets) */
+@media (max-width: 900px) {
+    .info-container{ width: calc(100% - 32px); margin: 12px auto; height: 48px; }
+    .container-button span{ font-size: 13px; padding: 10px 16px; }
+    .memory-game-block{ gap: 14px; }
+    .memory-game-block .game-block{ flex: 1 0 140px; height: 140px; }
+    .memory-game-block .game-block .front{ line-height: 140px; }
+    .memory-game-block .game-block .face::before{ font-size: 88px; }
+    .memory-game-block .game-block .back img{ max-width: 70%; max-height: 70%; }
+}
+
+/* Small screens (phones) */
+@media (max-width: 600px) {
+    .container-button span{ font-size: 12px; padding: 10px 14px; }
+    .memory-game-block{ gap: 10px; }
+    .memory-game-block .game-block{ flex: 1 0 110px; height: 110px; }
+    .memory-game-block .game-block .face::before{ font-size: 64px; }
+    .memory-game-block .game-block .back img{ max-width: 60%; max-height: 60%; }
+    .info-container{ height: 46px; }
+}
+
+/* Very small phones */
+@media (max-width: 480px) {
+    .container-button span { font-size: 10px; padding: 10px 14px; }
+    .info-container { height: 44px; }
+}
+
